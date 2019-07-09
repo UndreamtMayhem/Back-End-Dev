@@ -1,0 +1,39 @@
+{% extends "base.html" %} {% load static %} {% block main %}
+
+<section id="content">
+	{% if messages %}
+	<div class="panel w3-red">
+		<h3>{{ message.tags }}</h3>
+		{% for message in messages %}
+		<p{% if message.tags %} class="{{ message.tags }}" {% endif %}>
+			{% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %} {{ message }}
+			</p>
+			{% endfor %}
+			<span onclick="this.parentElement.style.display='none'" class="w3-button w3-display-topright">&times;</span>
+	</div>
+
+	{% endif %} {% for blog in blogs %}
+	<article>
+
+		<header>
+			<h2>{{blog.title}}</h2>
+			<div class="meta">
+				Posted By
+				<strong>{{blog.author}} - {{blog.created}}</strong>
+				<span>(2 Comments)</span>
+			</div>
+		</header>
+		<img src="{% static 'img/cat.jpg' %}" alt="Post 1">
+		<p>{{blog.blog_content|truncatewords:15}}</p>
+
+		<footer>
+			<a href="{% url 'blog' blog.id %}" class="black-button">
+				<i class="fa fa-paper-plane w3-margin-right"></i>Read More</a>
+		</footer>
+	</article>
+	{% endfor %}
+</section>
+
+<div class="clearfix"></div>
+
+{% endblock %}

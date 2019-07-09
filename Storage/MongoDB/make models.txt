@@ -1,0 +1,4 @@
+build a fake model maybe use data generator
+or import a csv
+
+if not both

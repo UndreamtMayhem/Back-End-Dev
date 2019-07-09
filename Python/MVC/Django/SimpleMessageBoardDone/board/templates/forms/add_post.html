@@ -1,0 +1,9 @@
+<form method="post" action="{% url 'add-post' %}" class="centerdiv" style="text-align:center">
+  {% csrf_token %}
+  <b>Post</b>
+  <textarea rows="4" cols="50"="text" class="form-control" name="post_content">
+    </textarea>
+  <br>
+  <input type="hidden" class="form-control" name="topic_id" value={{topic.id}}>
+  <input type="submit" class="btn btn-success" value="Post!">
+</form>

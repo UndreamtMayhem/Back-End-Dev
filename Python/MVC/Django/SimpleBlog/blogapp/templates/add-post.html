@@ -1,0 +1,39 @@
+{% extends "base.html" %} {% load static %} {% block main %}
+ 
+<section id="content">
+	<div class="add-form">
+		<h2>Add Post</h2>
+		<form action="{% url 'create' %}" method="post" id="addBlog">
+				{% csrf_token %}
+			<p>
+				<label for="title">Post Title: </label>
+				<input type="text" class="form-control" name="title">
+			</p>
+			<p>
+				<label>Category: </label>
+				<div class="styled-select slate">
+					<select class="form-control" name="category">
+						<option value="Web Developmen">Web Development</option>
+						<option value="Design">Design</option>
+						<option value="Cloud &MP; Hosting">Cloud &AMP; Hosting</option>
+						<option value="Gadgets">Gadgets</option>
+						<option value="Software">Software</option>
+						<option value="SEO &MP; Marketing">SEO &AMP; Marketing</option>
+					</select>
+				</div>
+			</p>
+			<p>
+				<label>Body: </label>
+				<textarea class="form-control" name="blog_content"></textarea>
+			</p>
+			<p>
+				<label>Select Image: </label>
+				<input type="file" name="blog-image">
+			</p>
+			<p>
+				<button type="submit" class="btn btn-success pull-left" value="Add Blog!">Add Post</button>
+			</p>
+		</form>
+	</div>
+</section>
+{% endblock %}

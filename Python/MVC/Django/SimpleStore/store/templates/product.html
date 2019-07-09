@@ -1,0 +1,98 @@
+{% extends 'base.html' %} {% block content %}
+<section id="products">
+
+    <div class="row">
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-4 py-2">
+                    <img class="img-fluid" src="{{prod.imglink}}" alt="product">
+                </div>
+                <div class="col-md-8">
+                    <h2>{{prod.name}}</h2>
+                    <div class="price">${{prod.price}}</div>
+                    <hr>
+                    <p>Quanity:
+                        <select class="form-control">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </p>
+                    <form method="post">
+                        {% csrf_token %}
+                        <input type="submit" value="Add to Cart" class="btn btn-success">
+                        <input type="hidden" name="obj_id" value={{prod.id}} />
+                    </form>
+                    <hr>
+                    <div id="accordion" class="mb-4">
+                        <div class="card panel">
+                            <div class="card-header panel-header" id="headerOne">
+                                <h5 class="mb-0">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                        Description
+                                    </a>
+                                </h5>
+                            </div>
+                            <div id="collapseOne" class="collapse" aria-labelledby="headerOne" data-parent="#accordion">
+                                <div class="card-body">
+                                    {{prod.description}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card panel">
+                            <div class="card-header panel-header" role="tab" id="headerTwo">
+                                <h5 class="mb-0">
+                                    <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        Specifications
+                                    </a>
+                                </h5>
+                            </div>
+                            <div id="collapseTwo" class="card-collapse collapse" role="tabcard" aria-labelledby="headerTwo">
+                                <div class="card-body">
+                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute,
+                                    non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch
+                                    3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda
+                                    shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt
+                                    sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer
+                                    farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them
+                                    accusamus labore sustainable VHS.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card panel">
+                            <div class="card-header panel-header" role="tab" id="headerThree">
+                                <h5 class="mb-0">
+                                    <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                        Related
+                                    </a>
+                                </h5>
+                            </div>
+                            <div id="collapseThree" class="card-collapse collapse" role="tabcard" aria-labelledby="headerThree">
+                                <div class="card-body">
+                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute,
+                                    non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch
+                                    3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda
+                                    shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt
+                                    sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer
+                                    farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them
+                                    accusamus labore sustainable VHS.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-2">
+            <ul class="list-group">
+                <li class="list-group-item active py-2">Mobile</li>
+                <li class="list-group-item py-2">Computers</li>
+                <li class="list-group-item py-2">Computers Accessories</li>
+                <li class="list-group-item py-2">Laptops</li>
+                <li class="list-group-item py-2">Tablets</li>
+            </ul>
+        </div>
+    </div>
+</section>{% endblock %}

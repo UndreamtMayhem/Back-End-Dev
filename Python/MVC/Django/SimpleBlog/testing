@@ -1,0 +1,187 @@
+DO http://www.obeythetestinggoat.com/book/appendix_bdd.html
+http://www.obeythetestinggoat.com/book/chapter_post_and_database.html
+
+Initial Project Setup
+Start with a User Story and map it to a first functional test.
+
+Pick a test framework—unittest is fine, and options like py.test, nose, or Green can also offer some advantages.
+
+Run the functional test and see your first expected failure.
+
+Pick a web framework such as Django, and find out how to run unit tests against it.
+
+Create your first unit test to address the current FT failure, and see it fail.
+
+Do your first commit to a VCS like Git
+
+
+
+
+The Basic TDD Workflow
+Double-loop TDD (The TDD process with functional and unit tests)
+
+Red, Green, Refactor
+
+Triangulation
+
+The scratchpad
+
+"3 Strikes and Refactor"
+
+"Working State to Working State"
+
+"YAGNI"
+
+
+Moving Beyond Dev-Only Testing
+Start system testing early. Ensure your components work together: web server, static content, database.
+
+Build a staging environment to match your production environment, and run your FT suite against it.
+
+Automate your staging and production environments:
+
+PaaS vs. VPS
+
+Fabric
+
+Configuration management (Chef, Puppet, Salt, Ansible)
+
+Vagrant
+
+Think through deployment pain points: the database, static files, dependencies, how to customise settings, and so on.
+
+Build a CI server as soon as possible, so that you don’t have to rely on self-discipline to see the tests run.
+
+
+
+
+
+General Testing Best Practices
+Each test should test one thing.
+
+One test file per application code source file.
+
+Consider at least a placeholder test for every function and class, no matter how simple.
+
+"Don’t test constants".
+
+Try to test behaviour rather than implementation.
+
+Try to think beyond the charmed path through the code, and think through edge cases and error cases.
+
+
+
+
+Selenium/Functional Testing Best Practices
+Use explicit rather than implicit waits, and the interaction/wait pattern.
+
+Avoid duplication of test code—​helper methods in a base class and the Page pattern are possible solutions.
+
+Avoid double-testing functionality. If you have a test that covers a time-consuming process (e.g., login), consider ways of skipping it in other tests (but be aware of unexpected interactions between seemingly unrelated bits of functionality).
+
+Look into BDD tools as another way of structuring your FTs.
+
+
+
+
+
+Useful TDD Concepts
+Regression
+When new code breaks some aspect of the application which used to work.
+
+Unexpected failure
+When a test fails in a way we weren’t expecting. This either means that we’ve made a mistake in our tests, or that the tests have helped us find a regression, and we need to fix something in our code.
+
+Red/Green/Refactor
+Another way of describing the TDD process. Write a test and see it fail (Red), write some code to get it to pass (Green), then Refactor to improve the implementation.
+
+
+
+Triangulation
+Adding a test case with a new specific example for some existing code, to justify generalising the implementation (which may be a "cheat" until that point).
+
+Three strikes and refactor
+A rule of thumb for when to remove duplication from code. When two pieces of code look very similar, it often pays to wait until you see a third use case, so that you’re more sure about what part of the code really is the common, re-usable part to refactor out.
+
+The scratchpad to-do list
+A place to write down things that occur to us as we’re coding, so that we can finish up what we’re doing and come back to them later.
+
+
+
+
+Outside-In, Test Isolation Versus Integrated Tests, and Mocking
+Remember the reasons we write tests in the first place:
+
+To ensure correctness and prevent regressions
+
+To help us to write clean, maintainable code
+
+To enable a fast, productive workflow
+
+And with those objectives in mind, think of different types of tests, and the trade-offs between them:
+
+Functional tests
+Provide the best guarantee that your application really works correctly, from the point of view of the user
+
+But: it’s a slower feedback cycle
+
+And they don’t necessarily help you write clean code
+
+Integrated tests (reliant on, for example, the ORM or the Django Test Client)
+Are quick to write
+
+Are easy to understand
+
+Will warn you of any integration issues
+
+But: may not always drive good design (that’s up to you!)
+
+And are usually slower than isolated tests
+
+Isolated ("mocky") tests
+Involve the most hard work
+
+Can be harder to read and understand
+
+But: are the best ones for guiding you towards better design
+
+And run the fastest
+
+If you do find yourself writing tests with lots of mocks, and they feel painful, remember “listen to your tests”—ugly, mocky tests may be trying to tell you that your code could be simplified.
+
+
+
+
+Useful Commands Updated
+To run the functional tests
+python manage.py test functional_tests
+
+To run the unit tests
+python manage.py test lists
+
+
+
+Testing "Best Practices" Applied in this Chapter
+Ensuring test isolation and managing global state
+Different tests shouldn’t affect one another. This means we need to reset any permanent state at the end of each test. Django’s test runner helps us do this by creating a test database, which it wipes clean in between each test. (See also [chapter_purist_unit_tests].)
+
+Avoid "voodoo" sleeps
+Whenever we need to wait for something to load, it’s always tempting to throw in a quick-and-dirty time.sleep. But the problem is that the length of time we wait is always a bit of a shot in the dark, either too short and vulnerable to spurious failures, or too long and it’ll slow down our test runs. Prefer a retry loop that polls our app and moves on as soon as possible.
+
+Don’t rely on Selenium’s implicit waits
+Selenium does theoretically do some "implicit" waits, but the implementation varies between browsers, and at the time of writing was highly unreliable in the Selenium 3 Firefox driver. "Explicit is better than implict", as the Zen of Python says, so prefer explicit waits.
+
+
+http://www.obeythetestinggoat.com/book/chapter_making_deployment_production_ready.html
+
+
+http://www.obeythetestinggoat.com/book/appendix_rest_api.html
+
+
+# Testing
+
+https://djangobook.com/the-django-book/
+
+js testing
+http://andyshora.com/unit-testing-best-practices-angularjs.html
+

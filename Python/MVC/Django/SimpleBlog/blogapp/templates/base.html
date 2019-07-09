@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html class="no-js">
+{% load static %}
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>DailiesTech</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+        crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+
+</head>
+
+
+<body>
+    <header id="main-header">
+        <div class="container">
+            <div id="branding">
+                <a href="{% url 'home' %}">
+                    <img src="{% static 'img/log.png' %}" alt="The DailiesTech">
+                    <h1 class="title">DailiesTech</h1>
+                </a>
+            </div>
+
+            <nav id="main-nav">
+                <ul>
+                    <li>
+                        <a href="{% url 'home' %}">Home</a>
+                    </li>
+                    {% if user_login %}
+                    <li>
+                        <a href="{% url 'create' %}">Add Blog</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'logout' %}">logout</a>
+                    </li>
+                    {% else %}
+                    <li>
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#login" id="login-modal">Login!</a>
+                        </li>
+                    </li>
+                    {% endif %}
+                </ul>
+                <i styles="color: white;" onclick="open_sidenav" class="fa fa-bars" aria-hidden="true" id="hamburger-btn"></i>
+            </nav>
+        </div>
+    </header>
+
+    <div class="sidebar c3" id="rightDrawer">
+        <div class="sidebar-top">
+            <div class="search">
+                <form>
+                    <input class="form-control" type="search" placeholder="Search Our Blogs..." id='search-text-input'>
+                    <div id='button-holder'>
+                        <img src="{% static 'img/search.png' %}" />
+                    </div>
+                </form>
+            </div>
+            <a href="#" onclick="close_sidenav" class="right close-btn " title="close menu" id="close-btn">
+                <i class="fa fa-remove"></i>
+            </a>
+        </div>
+        <div class="bar-block">
+            <a href="#portfolio" class="bar-item">
+                <i class="link-font"></i>Web Development</a>
+            <a href="#about" class="bar-item ">
+                <i class="link-font"></i>Design</a>
+            <a href="#contact" class="bar-item ">
+                <i class="link-font"></i>SEO &AMP; Marketing</a>
+            <a href="#contact" class="bar-item ">
+                <i class="link-font"></i>Cloud &AMP; Hosting</a>
+            <a href="#contact" class="bar-item ">
+                <i class="link-font"></i>Gadgets</a>
+            <a href="#contact" class="bar-item ">
+                <i class="link-font"></i>Software</a>
+        </div>
+        <div class="panel large">
+            <img src="{% static 'img/icons/facebook.png' %}">
+            <img src="{% static 'img/icons/instagram.png' %}">
+            <img src="{% static 'img/icons/googleplus.png' %}">
+            <img src="{% static 'img/icons/kik.png' %}">
+            <img src="{% static 'img/icons/linkedin.png' %}">
+            <img src="{% static 'img/icons/pinterest.png' %}">
+            <img src="{% static 'img/icons/snapchat.png' %}">
+        </div>
+
+    </div>
+
+    <main class="container">
+        <aside id="sidebar" class="">
+            <div class="search">
+                <form>
+                    <input type="search" placeholder="Search Our Blog...">
+                    <input type="image" src="{% static 'img/search.png' %}" alt="Search">
+                </form>
+            </div>
+            <!-- search -->
+            <div class="clearfix"></div>
+            <nav id="sub-nav">
+                <ul>
+                    <li>
+                        <a href="#">Web Development</a>
+                    </li>
+                    <li>
+                        <a href="#">Design</a>
+                    </li>
+                    <li>
+                        <a href="#">SEO &AMP; Marketing</a>
+                    </li>
+                    <li>
+                        <a href="#">Cloud &AMP; Hosting</a>
+                    </li>
+                    <li>
+                        <a href="#">Gadgets</a>
+                    </li>
+                    <li>
+                        <a href="#">Software</a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="ad">
+                <img src="{% static 'img/ad.jpg' %}" alt="Advertisement">
+            </div>
+        </aside>
+        {% block main %}{% endblock %}
+
+    </main>
+
+    <footer id="main-footer">
+        <div class="container">
+            <div class="left-footer">
+                <h3>Social Networks</h3>
+                <ul class="social-ul">
+                    <li>
+                        <img src="{% static 'img/icons/facebook.png' %}" class="w3-left w3-margin-right" style="width:35px">
+                        <span class="w3-large">Facebook</span>
+                        <br>
+                    </li>
+                    <li>
+                        <img src="{% static 'img/icons/googleplus.png' %}" class="w3-left w3-margin-right" style="width:35px">
+                        <span class="w3-large">GooglePlus</span>
+                        <br>
+                    </li>
+                    <li>
+                        <img src="{% static 'img/icons/linkedin.png' %}" class="w3-left w3-margin-right" style="width:35px">
+                        <span class="w3-large">Linkedin</span>
+                        <br>
+
+                    </li>
+                    <li>
+                        <img src="{% static 'img/icons/instagram.png' %}" class="w3-left w3-margin-right" style="width:35px">
+                        <span class="w3-large">Instgram</span>
+                        <br>
+                    </li>
+                </ul>
+            </div>
+            <div class="third">
+                <h3>POPULAR TAGS</h3>
+                <p>
+                    <span class="tag">Web Development</span>
+                    <span class="tag">Design</span>
+                    <span class="tag">Cloud &AMP;  Hosting</span>
+                    <span class="tag ">Gadgets</span>
+                    <span class="tag ">Software</span>
+                    <span class="tag ">SEO &AMP; Marketing</span>
+                    <span class="tag ">Front-End-Developement</span>
+                    <span class="tag">JS</span>
+                    <span class="tag ">HTML</span>
+                    <span class="tag ">CSS</span>
+                    <span class="tag ">Server-Side</span>
+                    <span class="tag ">MongoDb</span>
+                    <span class="tag ">Django</span>
+                    <span class="tag ">Flask</span>
+                </p>
+            </div>
+        </div>
+        <div class="container">
+            <div class="footer-right">
+                <h3>SiteMap</h3>
+                <nav class="footer-nav">
+                    <ul>
+                        <li>
+                            <a href="#" class="active">Home</a>
+                        </li>
+                        <li>
+                            <a href="#">About Us</a>
+                        </li>
+                        <li>
+                            <a href="#">Contact Us</a>
+                        </li>
+                        <li>
+                            <a href="#">Resources</a>
+                        </li>
+                        <li>
+                            <a href="#">Terms of Use</a>
+                        </li>
+                        <li>
+                            <a href="#">Privacy Policy</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </footer>
+    <div class="w3-black w3-center w3-padding-24 end-banner">
+        <p class="">Copyright &copy; 2018, The DailiesTech</p>
+    </div>
+    <div class="modal fade" id="login">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form method="post" id="loginForm" action="{% url 'home' %}">
+                    {% csrf_token %}
+                    <div class="modal-body login">
+                        <b>Username</b>
+                        <input class="form-control" name="username" />
+                        <b>Password:</b>
+                        <input type="password" class="form-control" name="password">
+                    </div>
+                    <div class="modal-footer">
+                        <input type="submit" class="btn btn-success pull-left" value="Login" />
+                </form>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'js/vendor/jquery-1.11.0.min.js' %}"></script>
+    <script src="{% static 'js/vendor/modernizr-2.6.2.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+
+</html>

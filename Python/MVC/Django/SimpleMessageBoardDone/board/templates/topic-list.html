@@ -1,0 +1,50 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="jumbotron">
+	<h1 class="display-4">Welcome to Board Topics</h1>
+	<p class="lead">Here are the communities latest additions</p>
+	<hr class="my-4">
+	<p class="lead">
+		{% if user_login == True %}
+		<a class="btn btn-primary" href="#" data-toggle="modal" data-target="#newtopic">Create New Topic</a>
+		{% endif %} </p>
+</div>
+
+<div class="container">
+	<div class="card-columns">
+		{% for topic in topics %}
+		<div class="card">
+			<div class="card-body">
+				<h5 class="card-title">{{topic.title}}</h5>
+				<p class="card-text">
+					<a class="btn btn-primary pull-right" href="{% url 'topic-detail' topic.id %}">View Posts</a>
+				</p>
+				<p class="card-text">
+					<small class="text-muted">Created {{topic.created}}</small>
+				</p>
+			</div>
+		</div>
+
+		{% endfor %}
+	</div>
+	<nav class=" d-flex justify-content-center mt-4" aria-label="Page navigation example">
+		<ul class="pagination">
+			<li class="page-item">
+				<a class="page-link" href="#">Previous</a>
+			</li>
+			<li class="page-item">
+				<a class="page-link" href="#">1</a>
+			</li>
+			<li class="page-item">
+				<a class="page-link" href="#">2</a>
+			</li>
+			<li class="page-item">
+				<a class="page-link" href="#">3</a>
+			</li>
+			<li class="page-item">
+				<a class="page-link" href="#">Next</a>
+			</li>
+		</ul>
+	</nav>
+</div>
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends "base.html" %} {% load static %} {% block main %}
+
+<section id="content">
+	<article>
+
+		<header>
+			<h2>{{blog.title}}</h2>
+			<div class="meta">
+				Posted By
+				<strong>{{blog.author}} - {{blog.created}}</strong>
+				<span>(2 Comments)</span>
+			</div>
+		</header>
+
+		<img src="{% static 'img/any.jpeg' %}" alt="Post 1">
+		<p>{{blog.blog_content}}</p>
+
+		<footer id="comments" class="footer-comments">
+			<h3>Recent Comments</h3>
+			<div class="comment-left">
+				<img src="{% static 'img/profile.jpeg' %}" class="profile-img">
+			</div>
+			<!-- comment left -->
+			<div class="comment-right">
+				<strong>John Doe</strong> Wrote:
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sollicitudin risus sed facilisis viverra.</p>
+			</div>
+			<!-- comment right -->
+			<div class="clearfix"></div>
+			<hr>
+			<div class="comment-left">
+				<img src="{% static 'img/profile.jpeg' %}" class="profile-img">
+			</div>
+			<!-- comment left -->
+			<div class="comment-right">
+				<strong>John Doe</strong> Wrote:
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sollicitudin risus sed facilisis viverra.</p>
+			</div>
+			<!-- comment right -->
+			<div class="clearfix"></div>
+			<div class="comment-form">
+				<h3>Leave Comment</h3>
+				<form>
+					<p>
+						<label>Name: </label>
+						<input type="text">
+					</p>
+					<p>
+						<label>Email: </label>
+						<input type="email">
+					</p>
+					<p>
+						<label>Comment: </label>
+						<textarea></textarea>
+					</p>
+					<p>
+						<button class="black-button">Add Comment</button>
+					</p>
+				</form>
+			</div>
+		</footer>
+	</article>
+</section>
+
+<div class="clearfix"></div>
+{% endblock %}

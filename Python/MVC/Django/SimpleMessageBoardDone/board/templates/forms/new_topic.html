@@ -1,0 +1,7 @@
+<form method="post" action="{% url 'new-topic' %}">
+    {% csrf_token %}
+    <b>Topic Name</b>
+    <input type="text" class="form-control" name="topic_name">
+    <br>
+    <input type="submit" class="btn btn-success" value="Create">
+</form>

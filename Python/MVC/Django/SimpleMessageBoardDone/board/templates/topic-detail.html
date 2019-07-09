@@ -1,0 +1,82 @@
+{% extends "base.html" %} {% block content %} {% load static %}
+
+<div class="jumbotron">
+	<h1 class="display-4">{{topic.title}}</h1>
+	<p class="lead">5 posts in total</p>
+	<p class="lead">
+		{% if user_login == True %}
+
+		<a href="#" class="btn btn-success" data-toggle="modal" data-target="#newpost">Add New Post</a>
+		{% endif %}
+	</p>
+</div>
+<div class="container mt-5">
+	{% for post in posts %}
+	<div class="card mb-2">
+		<div class="card-body">
+			<h5 class="card-title">{{topic.title}}</h5>
+			<p class="card-text">
+				{{post.content}} Post By: {{post.author.username}}
+				<br> {% if post in user.post_set.all %} {% include "forms/delete_post.html" %} {% endif %}
+			</p>
+			<div class="card-footer">
+				<div class="media">
+					<img class="mr-3" src="{% static 'image/profile.png' %}" alt="Generic placeholder image">
+					<div class="media-body">
+						<h5 class="mt-0">Username</h5>
+						Comment: Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum
+						in vulputate at, tempus viverra turpis. Fusce condimentum nunc
+
+						<div class="media mt-3">
+							<a class="pr-3" href="#">
+								<img src="{% static 'image/profile.png' %}" alt="Generic placeholder image">
+							</a>
+							<div class="media-body">
+								<h5 class="mt-0">Username</h5>
+								Comment: Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum
+								in vulputate at, tempus viverra turpis. Fusce condimentum nunc
+							</div>
+						</div>
+					</div>
+				</div>
+				<p class="card-text mt-3">
+					<small class="text-muted">Created {{post.created}}</small>
+				</p>
+			</div>
+		</div>
+	</div>
+
+	{% endfor %}
+	<nav class=" d-flex justify-content-center mt-4" aria-label="Page navigation example">
+		<ul class="pagination">
+			<li class="page-item">
+				<a class="page-link" href="#">Previous</a>
+			</li>
+			<li class="page-item">
+				<a class="page-link" href="#">1</a>
+			</li>
+			<li class="page-item">
+				<a class="page-link" href="#">2</a>
+			</li>
+			<li class="page-item">
+				<a class="page-link" href="#">3</a>
+			</li>
+			<li class="page-item">
+				<a class="page-link" href="#">Next</a>
+			</li>
+		</ul>
+	</nav>
+	<div class="modal fade" role="dialog" id="newpost">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4>Add a Post</h4>
+				</div>
+				<div class="modal-body">
+				{% include "forms/add_post.html" %}
+			</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

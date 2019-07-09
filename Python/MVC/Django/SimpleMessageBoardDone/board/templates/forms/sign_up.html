@@ -1,0 +1,18 @@
+<form method='post'>
+  {% csrf_token %}
+  <div class="form-group">
+    <label for="username">
+      <b>Enter a desired Username:</b>
+    </label>
+    <input class="form-control" type="text" id="username" placeholder="Username" name="username">
+  </div>
+
+  <div class="form-group">
+    <label for="password">
+      <b>Enter a password for your account:</b>
+    </label>
+    <input class="form-control" type="password" placeholder="Password" id="password" name="password">
+  </div>
+  <br>
+  <input type="submit" class="btn btn-success" value="Sign Up!">
+</form>
